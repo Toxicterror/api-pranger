@@ -34,7 +34,7 @@ $xml['en']['universes'] = simplexml_load_file("https://".$uni['en'].".ogame.game
 	<body>
 		<form>
 			<?php 
-			echo $de['chooseUni'].' '; 
+			echo $de['chooseUni']; 
 			?>
 			<select id="region" onchange="setRegion(this)">
 				<option value="DE">DE</option>
