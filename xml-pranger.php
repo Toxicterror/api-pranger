@@ -1,6 +1,6 @@
 <?php
 
-//require 'german.lang.php';
+require 'german.lang.php';
 	
 #### CONFIG ####
 // Default Universe to find all Universes of a Country
@@ -33,37 +33,34 @@ $xml['en']['universes'] = simplexml_load_file("https://".$uni['en'].".ogame.game
 	</head>
 	<body>
 		<form>
-			<?php echo $de['chooseUni'].' '; ?>
-				<select id="region" onchange="setRegion(this)">
-					<option value="DE">DE</option>
-					<option value="EN">EN</option>
-				</select>
-			
-				<select id="servers-en" style="display:none">
-			  <?php foreach ($xml['en']['universes']->children() as $universe) {
-						echo '<option value="'.$universe['id'].'">EN-'.$universe['id'].'</option>';
-					} ?>
-				</select>
-			
-				<select id="servers-de" style="display:none">
-			  <?php foreach ($xml['de']['universes']->children() as $universe) {
-						echo '<option value="'.$universe['id'].'">DE-'.$universe['id'].'</option>';
-					} ?>
-				</select>				
+			<?php 
+			echo $de['chooseUni'].' '; 
 			?>
+			<select id="region" onchange="setRegion(this)">
+				<option value="DE">DE</option>
+				<option value="EN">EN</option>
+			</select>
+			
+			<select id="servers-en" style="display:none">
+		  		<?php 
+				foreach ($xml['en']['universes']->children() as $universe) {
+					echo '<option value="'.$universe['id'].'">EN-'.$universe['id'].'</option>';
+				} 
+				?>
+			</select>
+			
+			<select id="servers-de">
+		  		<?php 
+				foreach ($xml['de']['universes']->children() as $universe) {
+					echo '<option value="'.$universe['id'].'">DE-'.$universe['id'].'</option>';
+				} 
+				?>
+			</select>
 		</form>
 	</body>
 </html>
 
 <?php
-
-foreach ($xml['de']['universes']->children() as $universe) {
-	echo '<a href="'.$universe['href'].'">DE-'.$universe['id'].'</a><br/>';
-}
-foreach ($xml['en']['universes']->children() as $universe) {
-	echo '<a href="'.$universe['href'].'">EN-'.$universe['id'].'</a><br/>';
-}
-	
 ###############################################################
 # CONFIG
 	#Standard-Universum
@@ -94,20 +91,4 @@ foreach ($xml_player->children() as $player) {
 	}
 }
 echo '</ul>';
-?>
-
-
-<?php
-#######
-# Default Universe to find all Universes of a Country
-$uni = ["de" => "s1-de", "en" => "s1-en"];
-#######
-$xml['de']['universes'] = simplexml_load_file("https://".$uni['de'].".ogame.gameforge.com/api/universes.xml");
-$xml['en']['universes'] = simplexml_load_file("https://".$uni['en'].".ogame.gameforge.com/api/universes.xml");
-foreach ($xml['de']['universes']->children() as $universe) {
-	echo '<a href="'.$universe['href'].'">DE-'.$universe['id'].'</a><br/>';
-}
-foreach ($xml['en']['universes']->children() as $universe) {
-	echo '<a href="'.$universe['href'].'">EN-'.$universe['id'].'</a><br/>';
-}
 ?>
